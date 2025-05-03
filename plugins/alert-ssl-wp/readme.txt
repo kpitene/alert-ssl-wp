@@ -1,6 +1,6 @@
-=== SSL Alert WP ===
+=== Alert SSL WP ===
 Contributors: kpitene
-Donate link: https://github.com/kpitene/ssl-alert-wp
+Donate link: https://github.com/kpitene/alert-ssl-wp
 Tags: ssl, security, certificate, expiration, notification
 Requires at least: 5.0
 Tested up to: 6.7
@@ -13,7 +13,11 @@ Monitor your WordPress site's SSL certificate expiration and receive timely noti
 
 == Description ==
 
-SSL Alert WP is a simple yet powerful plugin that helps you monitor your WordPress site's SSL certificate expiration. It automatically checks your certificate status and sends notifications before it expires, helping you avoid security issues and browser warnings that could affect your visitors' experience.
+Since Certificates can be free and renewal automatic, there are lot of possible issues, 
+so it is important to monitor your WordPress site's SSL certificate installation.
+Alert SSL WP is a simple yet powerful plugin that helps you monitor your WordPress site's SSL certificate expiration.
+It automatically checks your certificate status and sends notifications before it expires, 
+helping you avoid security issues and browser warnings that could affect your visitors' experience.
 
 **Key Features:**
 
@@ -33,7 +37,7 @@ An expired SSL certificate can cause serious problems for your website:
 * User trust in your website will decrease
 * Sensitive data may be at risk
 
-SSL Alert WP helps you stay ahead of these issues by providing timely reminders to renew your certificate.
+Alert SSL WP helps you stay ahead of these issues by providing timely reminders to renew your certificate.
 
 == Frequently Asked Questions ==
 
@@ -60,11 +64,11 @@ The plugin currently supports English (default) and French (fr_FR). More languag
 = How do I add a new translation manually? =
 
 To add a new translation:
-1. Copy the `languages/ssl-alert-wp.fr_FR.po` file which has all strings
+1. Copy the `languages/alert-ssl-wp.fr_FR.po` file which has all strings
 2. Create new `.po` and `.mo` files for your language
 3. Place them in the `languages` directory
 4. Compile .mo file with poeditor, gettext command line, or other tool:
-   `msgfmt -c -v -o ssl-alert-wp-fr_FR.mo ssl-alert-wp-fr_FR.po`
+   `msgfmt -c -v -o alert-ssl-wp-fr_FR.mo alert-ssl-wp-fr_FR.po`
 
 == Screenshots ==
 
@@ -78,7 +82,7 @@ To add a new translation:
 == Upgrade Notice ==
 
 = 1.0.0 =
-Initial release of SSL Alert WP.
+Initial release of Alert SSL WP.
 
 == Configuration ==
 
@@ -96,4 +100,4 @@ Initial release of SSL Alert WP.
 
 == Support ==
 
-For bug reports or feature requests, please use the [GitHub issue tracker](https://github.com/kpitene/ssl-alert-wp/issues).
+For bug reports or feature requests, please use the [GitHub issue tracker](https://github.com/kpitene/alert-ssl-wp/issues).

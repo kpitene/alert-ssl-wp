@@ -1,5 +1,5 @@
 <?php
-namespace SSL_Alert_WP\Core;
+namespace Alert_SSL_WP\Core;
 
 /**
  * Handles plugin settings
@@ -8,7 +8,7 @@ class Settings {
     /**
      * Option name in WordPress options table
      */
-    const OPTION_NAME = 'ssl_alert_wp_settings';
+    const OPTION_NAME = 'alert_ssl_wp_settings';
 
     /**
      * Default settings

@@ -1,5 +1,5 @@
 <?php
-namespace SSL_Alert_WP\Core;
+namespace Alert_SSL_WP\Core;
 
 /**
  * Main plugin class
@@ -52,7 +52,7 @@ class Plugin {
      * Setup cron jobs
      */
     private function setup_cron() {
-        add_action('ssl_alert_wp_daily_check', [$this, 'check_certificate']);
+        add_action('alert_ssl_wp_daily_check', [$this, 'check_certificate']);
     }
 
     /**
@@ -73,7 +73,7 @@ class Plugin {
                     'status' => 'error',
                     'message' => sprintf(
                         // translators: %1$s: expired certificate message
-                        __('Certificate has expired on %1$s.', 'ssl-alert-wp'),
+                        __('Certificate has expired on %1$s.', 'alert-ssl-wp'),
                         $result['expiry_date']
                     )
                 ]);
@@ -85,7 +85,7 @@ class Plugin {
                     'status' => 'warning',
                     'message' => sprintf(
                         // translators: %1$d: days remaining, %2$s: expiry date, %3$s: issuer, %4$s: subject
-                        __('WARNING: Certificate will expire in %1$d days (on %2$s). A notification email has been sent. Issued by %3$s for %4$s.', 'ssl-alert-wp'),
+                        __('WARNING: Certificate will expire in %1$d days (on %2$s). A notification email has been sent. Issued by %3$s for %4$s.', 'alert-ssl-wp'),
                         $days_remaining,
                         $result['expiry_date'],
                         $result['issuer'],
@@ -98,7 +98,7 @@ class Plugin {
                     'status' => 'valid',
                     'message' => sprintf(
                         // translators: %1$d: days remaining, %2$s: expiry date, %3$s: issuer, %4$s: subject
-                        __('Certificate is valid. Expires in %1$d days on %2$s. Issued by %3$s for %4$s.', 'ssl-alert-wp'),
+                        __('Certificate is valid. Expires in %1$d days on %2$s. Issued by %3$s for %4$s.', 'alert-ssl-wp'),
                         $days_remaining,
                         $result['expiry_date'],
                         $result['issuer'],

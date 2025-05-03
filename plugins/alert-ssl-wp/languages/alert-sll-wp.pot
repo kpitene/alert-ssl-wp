@@ -2,8 +2,8 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: SSL Alert WP 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ssl-alert-wp\n"
+"Project-Id-Version: Alert SSL WP 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/alert-ssl-wp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -12,26 +12,26 @@ msgstr ""
 "POT-Creation-Date: 2025-03-14T07:42:42+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
-"X-Domain: ssl-alert-wp\n"
+"X-Domain: alert-ssl-wp\n"
 
 #. Plugin Name of the plugin
-#: ssl-alert-wp.php
-msgid "SSL Alert WP"
+#: alert-ssl-wp.php
+msgid "Alert SSL WP"
 msgstr ""
 
 #. Plugin URI of the plugin
 #. Author URI of the plugin
-#: ssl-alert-wp.php
-msgid "https://wordpress.org/plugins/ssl-alert-wp/"
+#: alert-ssl-wp.php
+msgid "https://wordpress.org/plugins/alert-ssl-wp/"
 msgstr ""
 
 #. Description of the plugin
-#: ssl-alert-wp.php
+#: alert-ssl-wp.php
 msgid "Monitor your SSL certificate expiration and receive notifications before it expires."
 msgstr ""
 
 #. Author of the plugin
-#: ssl-alert-wp.php
+#: alert-ssl-wp.php
 msgid "Kpitene"
 msgstr ""
 
@@ -133,12 +133,12 @@ msgstr ""
 
 #. translators: %s: test notification subject
 #: includes/Core/Admin.php:311
-msgid "Test Notification from SSL Alert WP"
+msgid "Test Notification from Alert SSL WP"
 msgstr ""
 
 #. translators: %s: test notification message
 #: includes/Core/Admin.php:313
-msgid "This is a test notification from SSL Alert WP."
+msgid "This is a test notification from Alert SSL WP."
 msgstr ""
 
 #. translators: %s: test notification success message
@@ -208,7 +208,7 @@ msgstr ""
 
 #. translators: %s: WordPress admin URL
 #: includes/Core/Notifier.php:142
-msgid "This notification was sent by the SSL Alert WP plugin. You can configure notification settings in the WordPress admin panel at %s."
+msgid "This notification was sent by the Alert SSL WP plugin. You can configure notification settings in the WordPress admin panel at %s."
 msgstr ""
 
 #. translators: %1$s: expired certificate message

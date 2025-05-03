@@ -1,6 +1,6 @@
-# SSL Alert WP
+# Alert SSL WP
 
-The wordpress plugin files are all located in the plugins/ssl-alert-wp directory
+The wordpress plugin files are all located in the plugins/alert-ssl-wp directory
 Other files in parent directory are for development and docker
 
 ## Installation of Development Environment

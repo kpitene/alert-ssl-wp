@@ -11,11 +11,11 @@ services:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: dev
       WORDPRESS_DB_PASSWORD: dev
-      WORDPRESS_DB_NAME: ssl-alert-wp
+      WORDPRESS_DB_NAME: alert-ssl-wp
       # debug mode
       WORDPRESS_DEBUG: 1
     volumes:
-      - ./plugins/ssl-alert-wp:/var/www/html/wp-content/plugins/ssl-alert-wp:ro
+      - ./plugins/alert-ssl-wp:/var/www/html/wp-content/plugins/alert-ssl-wp:ro
     depends_on:
       - db
 
@@ -23,7 +23,7 @@ services:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_DATABASE: ssl-alert-wp
+      MYSQL_DATABASE: alert-ssl-wp
       MYSQL_USER: dev
       MYSQL_PASSWORD: dev
       MYSQL_RANDOM_ROOT_PASSWORD: '1'

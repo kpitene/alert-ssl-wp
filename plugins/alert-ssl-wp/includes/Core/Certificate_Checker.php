@@ -1,5 +1,5 @@
 <?php
-namespace SSL_Alert_WP\Core;
+namespace Alert_SSL_WP\Core;
 
 /**
  * Handles SSL certificate checking
@@ -16,7 +16,7 @@ class Certificate_Checker {
             return [
                 'valid' => false,
                 // translators: %s: no URL provided error
-                'error' => __('No URL provided', 'ssl-alert-wp')
+                'error' => __('No URL provided', 'alert-ssl-wp')
             ];
         }
 
@@ -26,7 +26,7 @@ class Certificate_Checker {
             return [
                 'valid' => false,
                 // translators: %s: HTTPS protocol error
-                'error' => __('URL must use HTTPS protocol', 'ssl-alert-wp')
+                'error' => __('URL must use HTTPS protocol', 'alert-ssl-wp')
             ];
         }
 
@@ -57,7 +57,7 @@ class Certificate_Checker {
                 'valid' => false,
                 'error' => sprintf(
                     // translators: %1$s: URL, %2$s: error message
-                    __('Could not connect to %1$s: %2$s', 'ssl-alert-wp'),
+                    __('Could not connect to %1$s: %2$s', 'alert-ssl-wp'),
                     $host,
                     $errstr
                 )
@@ -72,7 +72,7 @@ class Certificate_Checker {
             return [
                 'valid' => false,
                 // translators: %s: parse error
-                'error' => __('Could not parse SSL certificate', 'ssl-alert-wp')
+                'error' => __('Could not parse SSL certificate', 'alert-ssl-wp')
             ];
         }
 
@@ -89,7 +89,7 @@ class Certificate_Checker {
             'days_remaining' => $days_remaining,
             'expiry_date' => gmdate('Y-m-d H:i:s', $expiry_timestamp),
             // translators: %s: Unknown
-            'issuer' => $cert['issuer']['O'] ?? __('Unknown', 'ssl-alert-wp'),
+            'issuer' => $cert['issuer']['O'] ?? __('Unknown', 'alert-ssl-wp'),
             'subject' => $cert['subject']['CN'] ?? $host,
         ];
     }

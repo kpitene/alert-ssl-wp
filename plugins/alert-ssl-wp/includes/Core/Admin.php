@@ -1,5 +1,5 @@
 <?php
-namespace SSL_Alert_WP\Core;
+namespace Alert_SSL_WP\Core;
 
 /**
  * Handles admin interface
@@ -40,8 +40,8 @@ class Admin {
         add_action('admin_menu', [$this, 'add_menu_page']);
         add_action('admin_init', [$this, 'register_settings']);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
-        add_action('wp_ajax_ssl_alert_wp_check_now', [$this, 'ajax_check_now']);
-        add_action('wp_ajax_ssl_alert_wp_test_notification', [$this, 'ajax_test_notification']);
+        add_action('wp_ajax_alert_ssl_wp_check_now', [$this, 'ajax_check_now']);
+        add_action('wp_ajax_alert_ssl_wp_test_notification', [$this, 'ajax_test_notification']);
     }
 
     /**
@@ -50,11 +50,11 @@ class Admin {
     public function add_menu_page() {
         add_options_page(
             // translators: %s: SSL certificate monitor title
-            __('SSL Certificate Monitor', 'ssl-alert-wp'),
+            __('SSL Certificate Monitor', 'alert-ssl-wp'),
             // translators: %s: SSL monitor title
-            __('SSL Monitor', 'ssl-alert-wp'),
+            __('SSL Monitor', 'alert-ssl-wp'),
             'manage_options',
-            'ssl-alert-wp',
+            'alert-ssl-wp',
             [$this, 'render_settings_page']
         );
     }
@@ -64,46 +64,46 @@ class Admin {
      */
     public function register_settings() {
         register_setting(  
-            'ssl_alert_wp', 
-            'ssl_alert_wp_settings',
+            'alert_ssl_wp', 
+            'alert_ssl_wp_settings',
             [$this, 'register_settings_options_sanitize'],
         );
 
 
 
         add_settings_section(
-            'ssl_alert_wp_main',
+            'alert_ssl_wp_main',
             // translators: %s: SSL certificate monitoring settings title
-            __('SSL Certificate Monitoring Settings', 'ssl-alert-wp'),
+            __('SSL Certificate Monitoring Settings', 'alert-ssl-wp'),
             [$this, 'render_section_info'],
-            'ssl-alert-wp'
+            'alert-ssl-wp'
         );
 
         add_settings_field(
             'monitored_url',
             // translators: %s: URL to monitor
-            __('URL to Monitor', 'ssl-alert-wp'),
+            __('URL to Monitor', 'alert-ssl-wp'),
             [$this, 'render_url_field'],
-            'ssl-alert-wp',
-            'ssl_alert_wp_main'
+            'alert-ssl-wp',
+            'alert_ssl_wp_main'
         );
 
         add_settings_field(
             'notification_days',
             // translators: %s: notification days
-            __('Notification Days', 'ssl-alert-wp'),
+            __('Notification Days', 'alert-ssl-wp'),
             [$this, 'render_days_field'],
-            'ssl-alert-wp',
-            'ssl_alert_wp_main'
+            'alert-ssl-wp',
+            'alert_ssl_wp_main'
         );
 
         add_settings_field(
             'notification_emails',
             // translators: %s: notification emails
-            __('Notification Emails', 'ssl-alert-wp'),
+            __('Notification Emails', 'alert-ssl-wp'),
             [$this, 'render_emails_field'],
-            'ssl-alert-wp',
-            'ssl_alert_wp_main'
+            'alert-ssl-wp',
+            'alert_ssl_wp_main'
         );
     }
 
@@ -148,27 +148,27 @@ class Admin {
      * Enqueue admin scripts
      */
     public function enqueue_scripts($hook) {
-        if ($hook !== 'settings_page_ssl-alert-wp') {
+        if ($hook !== 'settings_page_alert-ssl-wp') {
             return;
         }
 
         wp_enqueue_script(
-            'ssl-alert-wp-admin',
-            SSL_ALERT_WP_PLUGIN_URL . 'assets/js/admin.js',
+            'alert-ssl-wp-admin',
+            ALERT_SSL_WP_PLUGIN_URL . 'assets/js/admin.js',
             ['jquery'],
-            SSL_ALERT_WP_VERSION,
+            ALERT_SSL_WP_VERSION,
             true
         );
 
-        wp_localize_script('ssl-alert-wp-admin', 'wpSslAlert', [
+        wp_localize_script('alert-ssl-wp-admin', 'wpSslAlert', [
             // translators: %s: checking text
-            'checkingText' => esc_html__('Checking...', 'ssl-alert-wp'),
+            'checkingText' => esc_html__('Checking...', 'alert-ssl-wp'),
             // translators: %s: check now text
-            'checkNowText' => esc_html__('Check Now', 'ssl-alert-wp'),
+            'checkNowText' => esc_html__('Check Now', 'alert-ssl-wp'),
             // translators: %s: test notification text
-            'testNotificationText' => esc_html__('Send Test Notification', 'ssl-alert-wp'),
+            'testNotificationText' => esc_html__('Send Test Notification', 'alert-ssl-wp'),
             'ajaxUrl' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('ssl_alert_wp_check'),
+            'nonce' => wp_create_nonce('alert_ssl_wp_check'),
         ]);
     }
 
@@ -191,7 +191,7 @@ class Admin {
                     <?php
                     printf(
                         // translators: %s: last check time
-                        esc_html__('Last check: %s', 'ssl-alert-wp'),
+                        esc_html__('Last check: %s', 'alert-ssl-wp'),
                         esc_html($last_check['time'])
                     );
                     if (!empty($last_check['result']) && isset($last_check['result']['message'])) {
@@ -205,28 +205,28 @@ class Admin {
 
             <form action="options.php" method="post">
                 <?php
-                settings_fields('ssl_alert_wp');
-                do_settings_sections('ssl-alert-wp');
+                settings_fields('alert_ssl_wp');
+                do_settings_sections('alert-ssl-wp');
                 submit_button();
                 ?>
             </form>
 
-            <div class="ssl-alert-wp-check-now">
-                <h2><?php echo esc_html__('Manual Check', 'ssl-alert-wp'); ?></h2>
-                <p><?php echo esc_html__('Click the button below to check the SSL certificate status immediately:', 'ssl-alert-wp'); ?></p>
-                <button type="button" class="button button-primary" id="ssl-alert-wp-check-now">
-                    <?php echo esc_html__('Check Now', 'ssl-alert-wp'); ?>
+            <div class="alert-ssl-wp-check-now">
+                <h2><?php echo esc_html__('Manual Check', 'alert-ssl-wp'); ?></h2>
+                <p><?php echo esc_html__('Click the button below to check the SSL certificate status immediately:', 'alert-ssl-wp'); ?></p>
+                <button type="button" class="button button-primary" id="alert-ssl-wp-check-now">
+                    <?php echo esc_html__('Check Now', 'alert-ssl-wp'); ?>
                 </button>
-                <div id="ssl-alert-wp-check-result" class="hidden"></div>
+                <div id="alert-ssl-wp-check-result" class="hidden"></div>
             </div>
 
-            <div class="ssl-alert-wp-test-notification">
-                <h2><?php echo esc_html__('Test Notification', 'ssl-alert-wp'); ?></h2>
-                <p><?php echo esc_html__('Click the button below to send a test notification:', 'ssl-alert-wp'); ?></p>
-                <button type="button" class="button button-secondary" id="ssl-alert-wp-test-notification">
-                    <?php echo esc_html__('Send Test Notification', 'ssl-alert-wp'); ?>
+            <div class="alert-ssl-wp-test-notification">
+                <h2><?php echo esc_html__('Test Notification', 'alert-ssl-wp'); ?></h2>
+                <p><?php echo esc_html__('Click the button below to send a test notification:', 'alert-ssl-wp'); ?></p>
+                <button type="button" class="button button-secondary" id="alert-ssl-wp-test-notification">
+                    <?php echo esc_html__('Send Test Notification', 'alert-ssl-wp'); ?>
                 </button>
-                <div id="ssl-alert-wp-test-result" class="hidden"></div>
+                <div id="alert-ssl-wp-test-result" class="hidden"></div>
             </div>
         </div>
         <?php
@@ -237,7 +237,7 @@ class Admin {
      */
     public function render_section_info() {
         // translators: %s: configuration message
-        echo '<p>' . esc_html__('Configure how and when you want to be notified about SSL certificate expiration.', 'ssl-alert-wp') . '</p>';
+        echo '<p>' . esc_html__('Configure how and when you want to be notified about SSL certificate expiration.', 'alert-ssl-wp') . '</p>';
     }
 
     /**
@@ -246,9 +246,9 @@ class Admin {
     public function render_url_field() {
         $url = $this->settings->get_monitored_url();
         ?>
-        <input type="url" name="ssl_alert_wp_settings[monitored_url]" value="<?php echo esc_attr($url); ?>" class="regular-text">
+        <input type="url" name="alert_ssl_wp_settings[monitored_url]" value="<?php echo esc_attr($url); ?>" class="regular-text">
         <p class="description">
-            <?php echo esc_html__('The HTTPS URL to monitor. Leave empty to use your site URL.', 'ssl-alert-wp'); ?>
+            <?php echo esc_html__('The HTTPS URL to monitor. Leave empty to use your site URL.', 'alert-ssl-wp'); ?>
         </p>
         <?php
     }
@@ -259,9 +259,9 @@ class Admin {
     public function render_days_field() {
         $days = $this->settings->get_notification_days();
         ?>
-        <input type="text" name="ssl_alert_wp_settings[notification_days]" value="<?php echo esc_attr(implode(',', $days)); ?>" class="regular-text">
+        <input type="text" name="alert_ssl_wp_settings[notification_days]" value="<?php echo esc_attr(implode(',', $days)); ?>" class="regular-text">
         <p class="description">
-            <?php echo esc_html__('Comma-separated list of days before expiration to send notifications. Example: 14,7,1', 'ssl-alert-wp'); ?>
+            <?php echo esc_html__('Comma-separated list of days before expiration to send notifications. Example: 14,7,1', 'alert-ssl-wp'); ?>
         </p>
         <?php
     }
@@ -272,9 +272,9 @@ class Admin {
     public function render_emails_field() {
         $emails = $this->settings->get_notification_emails();
         ?>
-        <input type="text" name="ssl_alert_wp_settings[notification_emails]" value="<?php echo esc_attr(implode(',', $emails)); ?>" class="regular-text">
+        <input type="text" name="alert_ssl_wp_settings[notification_emails]" value="<?php echo esc_attr(implode(',', $emails)); ?>" class="regular-text">
         <p class="description">
-            <?php echo esc_html__('Comma-separated list of email addresses to notify. Leave empty to use admin email.', 'ssl-alert-wp'); ?>
+            <?php echo esc_html__('Comma-separated list of email addresses to notify. Leave empty to use admin email.', 'alert-ssl-wp'); ?>
         </p>
         <?php
     }
@@ -283,11 +283,11 @@ class Admin {
      * Handle AJAX certificate check
      */
     public function ajax_check_now() {
-        check_ajax_referer('ssl_alert_wp_check');
+        check_ajax_referer('alert_ssl_wp_check');
 
         if (!current_user_can('manage_options')) {
             // translators: %s: unauthorized error
-            wp_send_json_error(__('Unauthorized', 'ssl-alert-wp'));
+            wp_send_json_error(__('Unauthorized', 'alert-ssl-wp'));
         }
         // Execute the same check as daily cron
         $this->plugin->check_certificate();
@@ -295,7 +295,7 @@ class Admin {
         $last_check = $this->settings->get_last_check();
         if (empty($last_check['result'])) {
             // translators: %s: check failed error
-            wp_send_json_error(__('Check failed - no result available', 'ssl-alert-wp'));
+            wp_send_json_error(__('Check failed - no result available', 'alert-ssl-wp'));
             return;
         }
 
@@ -321,28 +321,28 @@ class Admin {
      * Handle AJAX test notification
      */
     public function ajax_test_notification() {
-        check_ajax_referer('ssl_alert_wp_check');
+        check_ajax_referer('alert_ssl_wp_check');
 
         if (!current_user_can('manage_options')) {
             // translators: %s: unauthorized error
-            wp_send_json_error(__('Unauthorized', 'ssl-alert-wp'));
+            wp_send_json_error(__('Unauthorized', 'alert-ssl-wp'));
         }
 
         $emails = $this->settings->get_notification_emails();
         // translators: %s: test notification subject
-        $subject = esc_html__('Test Notification from SSL Alert WP', 'ssl-alert-wp');
+        $subject = esc_html__('Test Notification from Alert SSL WP', 'alert-ssl-wp');
         // translators: %s: test notification message
-        $message = esc_html__('This is a test notification from SSL Alert WP.', 'ssl-alert-wp');
+        $message = esc_html__('This is a test notification from Alert SSL WP.', 'alert-ssl-wp');
 
         $headers = array('Content-Type: text/html; charset=UTF-8');
         $sent = wp_mail($emails, $subject, $message, $headers);
 
         if ($sent) {
             // translators: %s: test notification success message
-            wp_send_json_success(esc_html__('Test notification sent successfully.', 'ssl-alert-wp'));
+            wp_send_json_success(esc_html__('Test notification sent successfully.', 'alert-ssl-wp'));
         } else {
             // translators: %s: test notification failure message
-            wp_send_json_error(esc_html__('Failed to send test notification.', 'ssl-alert-wp'));
+            wp_send_json_error(esc_html__('Failed to send test notification.', 'alert-ssl-wp'));
         }
     }
 }
